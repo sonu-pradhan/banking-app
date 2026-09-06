@@ -2,14 +2,55 @@
 @import "tw-animate-css";
 @import "shadcn/tailwind.css";
 
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* Hide scrollbar for Chrome, Safari and Opera */
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+
+/* Hide scrollbar for IE, Edge and Firefox */
+.no-scrollbar {
+  -ms-overflow-style: none; /* IE and Edge */
+  scrollbar-width: none; /* Firefox */
+}
+.glassmorphism {
+  background: rgba(255, 255, 255, 0.25);
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
+}
+
+.custom-scrollbar::-webkit-scrollbar {
+  width: 3px;
+  height: 3px;
+  border-radius: 2px;
+}
+
+.custom-scrollbar::-webkit-scrollbar-track {
+  background: #dddddd;
+}
+
+.custom-scrollbar::-webkit-scrollbar-thumb {
+  background: #5c5c7b;
+  border-radius: 50px;
+}
+
+.custom-scrollbar::-webkit-scrollbar-thumb:hover {
+  background: #7878a3;
+}
+
 @custom-variant dark (&:is(.dark *));
 
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-  --font-sans: var(--font-sans);
+  --font-sans: var(--font-inter);
   --font-mono: var(--font-geist-mono);
-  --font-heading: var(--font-sans);
+  --font-heading: var(--font-ibm-plex-serif);
   --color-sidebar-ring: var(--sidebar-ring);
   --color-sidebar-border: var(--sidebar-border);
   --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
@@ -46,6 +87,36 @@
   --radius-2xl: calc(var(--radius) * 1.8);
   --radius-3xl: calc(var(--radius) * 2.2);
   --radius-4xl: calc(var(--radius) * 2.6);
+
+  --text-10: 10px;
+  --text-10--line-height: 14px;
+
+  --text-12: 12px;
+  --text-12--line-height: 16px;
+
+  --text-14: 14px;
+  --text-14--line-height: 20px;
+
+  --text-16: 16px;
+  --text-16--line-height: 24px;
+
+  --text-18: 18px;
+  --text-18--line-height: 22px;
+
+  --text-20: 20px;
+  --text-20--line-height: 24px;
+
+  --text-24: 24px;
+  --text-24--line-height: 30px;
+
+  --text-26: 26px;
+  --text-26--line-height: 32px;
+
+  --text-30: 30px;
+  --text-30--line-height: 38px;
+
+  --text-36: 36px;
+  --text-36--line-height: 44px;
 }
 
 :root {
@@ -121,9 +192,11 @@
   * {
     @apply border-border outline-ring/50;
   }
+
   body {
     @apply bg-background text-foreground;
   }
+
   html {
     @apply font-sans;
   }
