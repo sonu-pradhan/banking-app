@@ -5,8 +5,8 @@ const HomePage = () => {
   const loggedIn = { firstName: "Akash" }
 
   return (
-    <section className="no-scrollbar flex w-full flex-row max-xl:max-h-screen max-xl:overflow-y-scroll">
-      <div className="no-scrollbar flex w-full flex-1 flex-col gap-8 px-5 sm:px-8 py-7 lg:py-12 xl:max-h-screen xl:overflow-y-scroll">
+    <section className="min-h-screen w-full">
+      <div className="flex w-full flex-col gap-8 py-8 px-6 sm:px-8 lg:px-10 lg:py-12">
         <header className="flex flex-col justify-between gap-8">
           <HeaderBox
             type="greeting"

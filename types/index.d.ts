@@ -8,3 +8,17 @@ declare type Account = {
   name: string;
   type: string;
 }  
+
+declare type User = {
+  $id: string;
+  email: string;
+  userId: string;
+  firstName: string;
+  lastName: string;
+  name: string;
+  address: string;
+  city: string;
+  state: string;
+  postalCode: string;
+  dateOfBirth: string;
+}
