@@ -196,3 +196,43 @@
     @apply font-sans;
   }
 }
+
+.bg-gradient {
+  background: conic-gradient(
+    from 135deg,
+    #ffffff 0deg,
+    #ffffff 10.909deg,
+    #ffffff 21.818deg,
+    #ffffff 32.727deg,
+    #ffffff 43.636deg,
+    #ffffff 54.545deg,
+    #ffffff 65.455deg,
+    #ffffff 76.364deg,
+    #ffffff 87.273deg,
+    #ffffff 98.182deg,
+    #ffffff 109.091deg,
+    #ffffff 120deg,
+    #ffffff 130.909deg,
+    #fff8ff 141.818deg,
+    #ffefff 152.727deg,
+    #ffe7ff 163.636deg,
+    #ffdfff 174.545deg,
+    #ffd6ff 185.455deg,
+    #ffceff 196.364deg,
+    #ffc7ff 207.273deg,
+    #ffbfff 218.182deg,
+    #ffb7ff 229.091deg,
+    #ffb0ff 240deg,
+    #ffa9ff 250.909deg,
+    #fca2ff 261.818deg,
+    #f29cff 272.727deg,
+    #e796ff 283.636deg,
+    #dd90ff 294.545deg,
+    #d28aff 305.455deg,
+    #c885ff 316.364deg,
+    #bd80ff 327.273deg,
+    #b37cff 338.182deg,
+    #a978ff 349.091deg,
+    #9e75ff 360deg
+  );
+}

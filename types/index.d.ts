@@ -22,3 +22,17 @@ declare type User = {
   postalCode: string;
   dateOfBirth: string;
 }
+
+declare type Bank = {
+  id: string;
+  userId: string;
+};
+
+declare type Transaction = {
+  id: string;
+  amount: number;
+  pending: boolean;
+  category: string;
+  senderBankId: string;
+  receiverBankId: string;
+};
