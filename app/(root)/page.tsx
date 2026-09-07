@@ -6,7 +6,7 @@ const HomePage = () => {
 
   return (
     <section className="min-h-screen w-full">
-      <div className="flex w-full flex-col gap-8 py-8 px-6 sm:px-8 lg:px-10 lg:py-12">
+      <div className="flex w-full flex-col gap-8 py-3 px-6 sm:px-8 lg:px-10 lg:py-12">
         <header className="flex flex-col justify-between gap-8">
           <HeaderBox
             type="greeting"
@@ -14,13 +14,13 @@ const HomePage = () => {
             user={loggedIn?.firstName || "User"}
             subtext="Access and manage your account and transactions efficiently"
           />
-        </header>
 
-        <BalanceBox
-        accounts={[]}
-        totalBanks={1}
-        currentBalance={3424.34}
-        />
+          <BalanceBox
+            accounts={[]}
+            totalBanks={1}
+            currentBalance={3424.34}
+          />
+        </header>
       </div>
     </section>
   )

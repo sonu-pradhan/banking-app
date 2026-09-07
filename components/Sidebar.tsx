@@ -21,7 +21,7 @@ const Sidebar = ({ user }: { user: User }) => {
                         alt="Ledge Meridian Logo"
                         className="size-8"
                     />
-                    <h1 className="font-ibm-plex-serif text-[26px] font-bold text-black xl:text-[28px]">Ledge Meridian</h1>
+                    <h1 className="font-ibm-plex-serif mid:text-[26px] font-bold text-black xl:text-[28px]">Ledge Meridian</h1>
                 </Link>
 
                 {sidebarLinks.map((item) => {
@@ -47,7 +47,7 @@ const Sidebar = ({ user }: { user: User }) => {
                                 )}
                             />
 
-                            <p className={cn("text-16 font-semibold text-black-2 max-xl:hidden", { "text-white!": isActive })}>
+                            <p className={cn("text-16 font-semibold text-black-2", { "text-white!": isActive })}>
                                 {item.label}
                             </p>
                         </Link>
