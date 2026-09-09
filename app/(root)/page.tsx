@@ -1,10 +1,11 @@
 import BalanceBox from "@/components/BalanceBox"
 import HeaderBox from "@/components/HeaderBox"
 import RightSidebar from "@/components/RightSidebar"
-import { User } from "lucide-react"
+import { getCurrentUser } from "@/lib/user.action"
 
-const HomePage = () => {
-  const loggedIn = { firstName: "Akash", lastName: "Singh", email: "akash@gmail.com" }
+const HomePage = async () => {
+
+  const loggedIn = await getCurrentUser();
 
   return (
     <section className="flex min-h-screen w-full">
