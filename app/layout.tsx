@@ -1,6 +1,7 @@
 import { Inter, IBM_Plex_Serif } from "next/font/google";
 import type { Metadata } from "next";
 import "./globals.css";
+import { Toaster } from "@/components/ui/toast";
 
 const inter = Inter({ subsets: ["latin"], variable: '--font-inter' });
 const ibmPlexSerif = IBM_Plex_Serif({
@@ -20,7 +21,10 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
       lang="en"
       className={`${inter.variable} ${ibmPlexSerif.variable} h-full antialiased`}
     >
-      <body>{children}</body>
+      <body>
+        {children}
+        <Toaster />
+      </body>
     </html>
   );
 }

@@ -10,7 +10,7 @@ declare type Account = {
 }  
 
 declare type User = {
-  $id: string;
+  id: string;
   email: string;
   userId: string;
   firstName: string;
@@ -19,7 +19,7 @@ declare type User = {
   address: string;
   city: string;
   state: string;
-  postalCode: string;
+  pinCode: string;
   dateOfBirth: string;
 }
 
