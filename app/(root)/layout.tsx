@@ -1,10 +1,11 @@
 import MobileNav from "@/components/MobileNav";
 import Sidebar from "@/components/Sidebar";
+import { getCurrentUser } from "@/lib/user.action";
 import Image from "next/image";
 
-export default function RootLayout({ children }: LayoutProps<"/">) {
+export default async function RootLayout({ children }: LayoutProps<"/">) {
 
-  const loggedIn = { fName: "Arun", lName: "Singh" };
+  const loggedIn = await getCurrentUser();
 
   return (
     <main className="flex min-h-screen w-full font-inter">

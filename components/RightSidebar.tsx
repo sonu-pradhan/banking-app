@@ -9,21 +9,20 @@ interface RightSidebarProps {
 }
 
 const RightSidebar = ({ user, transactions, banks }: RightSidebarProps) => {
-    console.log(user)
     return (
         <aside className="no-scrollbar w-100 hidden h-screen max-h-screen flex-col border-l border-gray-200 xl:flex w88 xl:overflow-y-scroll">
             <section className="flex flex-col pb-6">
                 <div className="h-30 w-full bg-gradient" />
                 <div className="relative flex px-6 max-xl:justify-center">
                     <div className="flex items-center justify-center absolute -top-8 size-18 rounded-full border-8 border-gray-100 p-2">
-                        <span className="text-5xl font-bold text-blue-500">{user.firstName?.[0]?.toUpperCase()}</span>
+                        <span className="text-5xl font-bold text-blue-500">{user?.firstName?.[0]?.toUpperCase()}</span>
                     </div>
 
                     <div className="flex flex-col pt-16">
                         <h1 className="text-20 font-semibold text-gray-900">
-                            {user.firstName} {user.lastName}
+                            {user?.firstName} {user?.lastName}
                         </h1>
-                        <p className="text-16 text-gray-600">{user.email}</p>
+                        <p className="text-16 text-gray-600">{user?.email}</p>
                     </div>
                 </div>
             </section>
@@ -43,7 +42,7 @@ const RightSidebar = ({ user, transactions, banks }: RightSidebarProps) => {
                             <BankCard
                                 key={banks[0].id}
                                 account={banks[0]}
-                                userName={`${user.firstName} ${user.lastName}`}
+                                userName={`${user?.firstName} ${user?.lastName}`}
                             />
                         </div>
                         {banks[1] && (
@@ -51,7 +50,7 @@ const RightSidebar = ({ user, transactions, banks }: RightSidebarProps) => {
                                 <BankCard
                                     key={banks[1].id}
                                     account={banks[1]}
-                                    userName={`${user.firstName} ${user.lastName}`}
+                                    userName={`${user?.firstName} ${user?.lastName}`}
                                 />
                             </div>
                         )}

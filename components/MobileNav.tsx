@@ -1,25 +1,54 @@
 "use client"
 
-import { Menu } from "lucide-react"
-import { Sheet, SheetContent, SheetTrigger } from "./ui/sheet"
+import { Menu, User } from "lucide-react"
+import { Sheet, SheetContent, SheetFooter, SheetTrigger } from "./ui/sheet"
 import { Button } from "./ui/button"
 import Image from "next/image"
 import Link from "next/link"
 import { sidebarLinks } from "@/constants"
 import { cn } from "@/lib/utils"
-import { usePathname } from "next/navigation"
+import { usePathname, useRouter } from "next/navigation"
 import { useEffect, useState } from "react"
+import { toast } from "./ui/toast"
 
 const MobileNav = ({ user }: { user: User }) => {
 
     const [open, setOpen] = useState(false);
 
+
     const pathname = usePathname();
+
+    const router = useRouter();
 
     useEffect(() => {
         setOpen(false);
     }, [pathname]);
 
+    const handleLogout = async () => {
+        try {
+            const response = await fetch("/api/logout", {
+                method: "DELETE",
+            });
+
+            const result = await response.json();
+
+            if (response.ok) {
+                toast.add({
+                    title: result.message,
+                    type: "success",
+                });
+            }
+        } catch (error) {
+            console.error(error);
+            toast.add({
+                title: "Something went wrong",
+                type: "error",
+            });
+        } finally {
+            setOpen(false)
+            router.push("/sign-in")
+        }
+    }
     return (
         <section>
             <Sheet open={open} onOpenChange={setOpen}>
@@ -66,6 +95,32 @@ const MobileNav = ({ user }: { user: User }) => {
                             </Link>
                         )
                     })}
+
+                    <SheetFooter>
+                        {
+                            user ?
+                                (
+                                    <>
+                                        <div className="flex flex-row items-center gap-3 rounded-lg px-4 py-4">
+                                            <User size={34} />
+                                            <div>
+                                                <h1 className="text-14 font-semibold text-gray-800">{user?.firstName} {user?.lastName}</h1>
+                                                <h1 className="text-gray-600">{user?.email}</h1>
+                                            </div>
+                                        </div>
+                                        <Button variant="destructive" type="submit" className="mb-10" onClick={handleLogout}>Logout</Button>
+                                    </>
+                                )
+                                :
+                                (
+                                    <Link href={"/sign-in"}>
+                                        <Button variant="destructive" className="w-full mb-10">Sign-In</Button>
+                                    </Link>
+                                )
+                        }
+
+
+                    </SheetFooter>
                 </SheetContent>
             </Sheet>
         </section>
