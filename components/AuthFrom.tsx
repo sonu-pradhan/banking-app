@@ -14,6 +14,7 @@ import CustomInput from "./CustomInput";
 import { authFormSchema } from "@/lib/utils";
 import { toast } from "./ui/toast";
 import { useRouter } from "next/navigation";
+import ConnectAccount from "./ConnectAccount";
 
 const AuthFrom = ({ type }: { type: string }) => {
   const [user, setUser] = useState(null);
@@ -111,7 +112,7 @@ const AuthFrom = ({ type }: { type: string }) => {
             title: result.message,
             type: "success",
           });
-          window.location.href = "/";
+          setUser(result.user)
         } else {
           toast.add({
             title: result.message,
@@ -186,7 +187,7 @@ const AuthFrom = ({ type }: { type: string }) => {
 
           {user ? (
             <div>
-              {/* bank account link */}
+              <ConnectAccount />
             </div>
           ) : (
             <>
