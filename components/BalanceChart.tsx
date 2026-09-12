@@ -11,12 +11,12 @@ const BalanceChart = ({ accounts } : {accounts: Account[]}) => {
     const data = {
     datasets: [
       {
-        label: 'Banks',
-        data: [3874, 3979, 9734],
+        label: 'Balance',
+        data: accounts.map((account) => account.balance),
         backgroundColor: ['#0747b6', '#2265d8', '#2f91fa'] 
       }
     ],
-    labels: ['bank 1', 'bank 2']
+    labels: accounts.map((account) => account.bankName)
   }
 
   return <Doughnut 

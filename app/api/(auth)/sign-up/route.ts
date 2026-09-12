@@ -30,7 +30,7 @@ export async function POST(request:Request) {
         const passwordHash = await bcrypt.hash(password, 10);
 
         const newUser = await pool.query(
-            `INSERT INTO users (firstName, lastName, email, password_hash, address, city, state, pinCode, dateOfBirth) 
+            `INSERT INTO users ("firstName", "lastName", email, password_hash, address, city, state, "pinCode", "dateOfBirth") 
             VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9)`,
             [firstName, lastName, email, passwordHash, address, city, state, pinCode, dateOfBirth]
         )

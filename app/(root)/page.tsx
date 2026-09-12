@@ -7,6 +7,10 @@ const HomePage = async () => {
 
   const loggedIn = await getCurrentUser();
 
+  const totalBalance = loggedIn.accounts.reduce((total:number, account:Account) => {
+    return total + account.balance;
+  }, 0);
+
   return (
     <section className="flex min-h-screen w-full">
       <div className="flex flex-1 flex-col gap-8 py-3 px-6 sm:px-8 lg:px-10 lg:py-12">
@@ -19,17 +23,17 @@ const HomePage = async () => {
           />
 
           <BalanceBox
-            accounts={[]}
-            totalBanks={1}
-            currentBalance={3424.34}
+            accounts={loggedIn.accounts}
+            totalBanks={loggedIn.accounts.length}
+            currentBalance={totalBalance}
           />
         </header>
       </div>
 
       <RightSidebar
-        user ={loggedIn}
+        user={loggedIn}
         transactions={[]}
-        banks ={[{currentBalance: 3490.49}, {currentBalance:2785.98}]}
+        bankAccounts={loggedIn.accounts}
       />
     </section>
   )

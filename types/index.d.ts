@@ -1,12 +1,8 @@
 declare type Account = {
   id: string;
-  availableBalance: number;
-  currentBalance: number;
-  officialName: string;
-  mask: string;
-  institutionId: string;
-  name: string;
-  type: string;
+  accountNumber: number;
+  balance: number;
+  bankName: string;
 }  
 
 declare type User = {
@@ -21,6 +17,7 @@ declare type User = {
   state: string;
   pinCode: string;
   dateOfBirth: string;
+  primary_account_id: string | null;
 }
 
 declare type Bank = {

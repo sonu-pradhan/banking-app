@@ -17,7 +17,7 @@ import { useRouter } from "next/navigation";
 import ConnectAccount from "./ConnectAccount";
 
 const AuthFrom = ({ type }: { type: string }) => {
-  const [user, setUser] = useState(null);
+  const [user, setUser] = useState<User | null>(null);
   const [isLoading, setIsLoading] = useState(false);
 
   const router = useRouter();
@@ -106,13 +106,21 @@ const AuthFrom = ({ type }: { type: string }) => {
         });
 
         const result = await response.json();
+        console.log(result)
 
         if (response.ok) {
+          console.log(result)
           toast.add({
             title: result.message,
             type: "success",
           });
-          setUser(result.user)
+
+          if (result.user.primary_account_id) {
+            router.push("/");
+          } else {
+            setUser(result.user);
+          }
+          
         } else {
           toast.add({
             title: result.message,
@@ -134,16 +142,16 @@ const AuthFrom = ({ type }: { type: string }) => {
   };
 
   useEffect(() => {
-  const credentials = sessionStorage.getItem("signupCredentials");
+    const credentials = sessionStorage.getItem("signupCredentials");
 
-  if (credentials) {
-    const { email } = JSON.parse(credentials);
+    if (credentials) {
+      const { email } = JSON.parse(credentials);
 
-    form.setValue("email", email);
+      form.setValue("email", email);
 
-    sessionStorage.removeItem("signupCredentials");
-  }
-}, []);
+      sessionStorage.removeItem("signupCredentials");
+    }
+  }, []);
 
   return (
     <section className="flex h-screen w-full overflow-hidden">
@@ -170,7 +178,7 @@ const AuthFrom = ({ type }: { type: string }) => {
 
             <div>
               <h1 className="text-2xl font-bold text-gray-900">
-                {user
+                {user && !user.primary_account_id
                   ? "Link Account"
                   : type === "sign-in"
                     ? "Sign In"
@@ -185,7 +193,7 @@ const AuthFrom = ({ type }: { type: string }) => {
             </div>
           </header>
 
-          {user ? (
+          {user && !user.primary_account_id ? (
             <div>
               <ConnectAccount />
             </div>

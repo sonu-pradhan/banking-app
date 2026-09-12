@@ -5,10 +5,10 @@ import BankCard from "./BankCard"
 interface RightSidebarProps {
     user: User;
     transactions: Transaction[];
-    banks: Bank[] & Account[];
+    bankAccounts: Account[];
 }
 
-const RightSidebar = ({ user, transactions, banks }: RightSidebarProps) => {
+const RightSidebar = ({ user, transactions, bankAccounts }: RightSidebarProps) => {
     return (
         <aside className="no-scrollbar w-100 hidden h-screen max-h-screen flex-col border-l border-gray-200 xl:flex w88 xl:overflow-y-scroll">
             <section className="flex flex-col pb-6">
@@ -36,20 +36,20 @@ const RightSidebar = ({ user, transactions, banks }: RightSidebarProps) => {
                     </Link>
                 </div>
 
-                {banks?.length > 0 && (
+                {bankAccounts?.length > 0 && (
                     <div className="relative h-55 w-90">
                         <div className="absolute left-0 top-0 z-10">
                             <BankCard
-                                key={banks[0].id}
-                                account={banks[0]}
+                                key={bankAccounts[0].id}
+                                account={bankAccounts[0]}
                                 userName={`${user?.firstName} ${user?.lastName}`}
                             />
                         </div>
-                        {banks[1] && (
+                        {bankAccounts[1] && (
                             <div className="absolute right-0 top-8 z-0">
                                 <BankCard
-                                    key={banks[1].id}
-                                    account={banks[1]}
+                                    key={bankAccounts[1].id}
+                                    account={bankAccounts[1]}
                                     userName={`${user?.firstName} ${user?.lastName}`}
                                 />
                             </div>
