@@ -3,6 +3,7 @@ declare type Account = {
   accountNumber: number;
   balance: number;
   bankName: string;
+  isPrimary?: boolean
 }  
 
 declare type User = {

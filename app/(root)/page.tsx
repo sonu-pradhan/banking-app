@@ -7,7 +7,7 @@ const HomePage = async () => {
 
   const loggedIn = await getCurrentUser();
 
-  const totalBalance = loggedIn.accounts.reduce((total:number, account:Account) => {
+  const totalBalance = loggedIn?.accounts.reduce((total:number, account:Account) => {
     return total + account.balance;
   }, 0);
 
@@ -23,8 +23,8 @@ const HomePage = async () => {
           />
 
           <BalanceBox
-            accounts={loggedIn.accounts}
-            totalBanks={loggedIn.accounts.length}
+            accounts={loggedIn?.accounts}
+            totalBanks={loggedIn?.accounts.length}
             currentBalance={totalBalance}
           />
         </header>
@@ -33,7 +33,7 @@ const HomePage = async () => {
       <RightSidebar
         user={loggedIn}
         transactions={[]}
-        bankAccounts={loggedIn.accounts}
+        bankAccounts={loggedIn?.accounts}
       />
     </section>
   )

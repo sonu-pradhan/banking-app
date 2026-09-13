@@ -4,7 +4,7 @@ import Link from 'next/link';
 const BankCard = ({ account, userName }: { account: Account; userName: string }) => {
   return (
     <div className="flex flex-col">
-      <Link href="/" className="relative flex h-48 w-[320px] justify-between rounded-[20px] border border-white bg-[#0179FE] shadow-[8px_10px_16px_0px_rgba(0,0,0,0.05)] backdrop-blur-[6px]">
+      <Link href="/my-banks" className="relative flex h-48 w-[320px] justify-between rounded-[20px] border border-white bg-[#0179FE] shadow-[8px_10px_16px_0px_rgba(0,0,0,0.05)] backdrop-blur-[6px]">
         <div className="relative z-10 flex size-full max-w-58 flex-col justify-between rounded-l-[20px] bg-gray-700 bg-linear-to-r from-[#0179FE] to-[#4893FF] px-5 pb-4 pt-5">
           <div>
             <h1 className="text-16 font-semibold text-white">
