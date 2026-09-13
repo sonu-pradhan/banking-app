@@ -1,14 +1,18 @@
-import { ArrowRight, Star } from "lucide-react";
+import { ArrowRight, Star, Trash2 } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { setPrimaryAccount } from "@/lib/account.action";
+import SetPrimaryButton from "./SetPrimaryButton";
 
 interface OtherAccountProps {
   bankName: string;
   accountNumber: number;
   balance: number;
+  id: string;
 }
 
 const OtherAccounts = ({
   bankName,
+  id,
   accountNumber,
   balance,
 }: OtherAccountProps) => {
@@ -40,17 +44,21 @@ const OtherAccounts = ({
       </div>
 
       <div className="flex flex-col gap-2 sm:flex-row lg:justify-end">
-        <Button
-          variant="outline"
-          className="gap-2 cursor-pointer hover:bg-gray-200"
-        >
-          <Star className="size-4" />
-          Set as primary account
-        </Button>
+        <form action={setPrimaryAccount.bind(null, id)}>
+          <SetPrimaryButton />
+        </form>
 
         <Button variant="ghost" className="gap-2 cursor-pointer hover:text-blue-700">
           See all transactions
           <ArrowRight className="size-4" />
+        </Button>
+        <Button
+          type="button"
+          variant="ghost"
+          className="gap-2 text-red-600 hover:bg-red-200 hover:text-red-700 cursor-pointer"
+        >
+          <Trash2 className="size-4" />
+          Remove
         </Button>
       </div>
     </div>

@@ -144,6 +144,7 @@ const MyBanks = async () => {
             {otherAccounts.map((account: Account) => (
               <OtherAccounts
                 key={account?.id}
+                id={account?.id}
                 bankName={account?.bankName}
                 accountNumber={account?.accountNumber}
                 balance={account?.balance}
