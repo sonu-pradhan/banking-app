@@ -1,4 +1,4 @@
-import { ArrowRight, Landmark, Plus} from "lucide-react";
+import { ArrowRight, Landmark, Plus } from "lucide-react";
 import Link from "next/link";
 
 import { Button } from "@/components/ui/button";
@@ -6,14 +6,14 @@ import OtherAccounts from "@/components/OtherAccounts";
 import { getCurrentUser } from "@/lib/user.action";
 
 const MyBanks = async () => {
-  
+
   const user = await getCurrentUser()
 
   const accounts = user?.accounts
-  
-  const primaryAccount = accounts.find((account: Account ) => account.isPrimary === true );
 
-  const otherAccounts = accounts.filter((account: Account) => account.isPrimary === false );
+  const primaryAccount = accounts.find((account: Account) => account.isPrimary === true);
+
+  const otherAccounts = accounts.filter((account: Account) => account.isPrimary === false);
 
   return (
     <section className="w-full md:mt-6 space-y-8 px-4 py-6 sm:px-6 lg:px-8">
@@ -29,13 +29,15 @@ const MyBanks = async () => {
           </p>
         </div>
 
-        <Button className="w-full mr-10 gap-2 mt-4 bg-blue-600 shadow-sm hover:bg-blue-700 sm:w-auto cursor-pointer">
-          <Plus className="size-4" />
-          Add account
-        </Button>
+        <Link href="/my-banks/add-account">
+          <Button className="w-full mr-10 gap-2 mt-4 bg-blue-600 shadow-sm hover:bg-blue-700 sm:w-auto cursor-pointer">
+            <Plus className="size-4" />
+            Add account
+          </Button>
+        </Link>
       </div>
 
-      
+
       <div>
         <div className="mb-4 flex items-center justify-between">
           <h2 className="text-lg font-semibold text-gray-900">
@@ -103,7 +105,7 @@ const MyBanks = async () => {
                 </p>
 
                 <p className="mt-1 font-mono text-sm font-medium tracking-[0.2em] text-gray-700">
-                 {primaryAccount?.accountNumber}
+                  {primaryAccount?.accountNumber}
                 </p>
               </div>
 
@@ -134,7 +136,7 @@ const MyBanks = async () => {
             </div>
 
             <span className="hidden rounded-full bg-gray-100 px-3 py-1 text-xs font-medium text-gray-500 sm:block">
-             other accounts : {otherAccounts.length} 
+              other accounts : {otherAccounts.length}
             </span>
           </div>
 

@@ -30,7 +30,7 @@ const RightSidebar = ({ user, transactions, bankAccounts }: RightSidebarProps) =
             <section className="flex flex-col justify-between gap-8 px-6">
                 <div className="flex w-full justify-between">
                     <h2 className="text-15 font-semibold text-gray-900">My Banks</h2>
-                    <Link href="/" className="flex gap-2 items-center">
+                    <Link href="/my-banks/add-account" className="flex gap-2 items-center">
                         <Plus size={18} />
                         <h2 className="text-12 font-semibold text-gray-600">Add Bank</h2>
                     </Link>
