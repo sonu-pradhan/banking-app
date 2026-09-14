@@ -106,7 +106,6 @@ const AuthFrom = ({ type }: { type: string }) => {
         });
 
         const result = await response.json();
-        console.log(result)
 
         if (response.ok) {
           console.log(result)
