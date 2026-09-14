@@ -37,6 +37,10 @@ const PaymentTransfer = ({
   const [message, setMessage] = useState("");
   const [error, setError] = useState("");
 
+  const [idempotencyKey, setIdempotencyKey] = useState(
+    () => crypto.randomUUID()
+  );
+
   const selectedBank = accounts.find(
     (account) => account.id === selectedAccount
   );
@@ -85,6 +89,7 @@ const PaymentTransfer = ({
           recipient: recipient.trim(),
           amount: Number(amount),
           pin,
+          idempotencyKey,
         }),
       });
 
@@ -92,9 +97,10 @@ const PaymentTransfer = ({
 
       if (response.ok) {
         toast.add({
-            title: "Tranfered successfully",
-            type: "success",
-          });
+          title: "Tranfered successfully",
+          type: "success",
+        });
+        setIdempotencyKey(crypto.randomUUID());
         router.push("/transaction-history")
       } else {
         setError(data.message || "Transer failed");

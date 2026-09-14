@@ -88,5 +88,23 @@ CREATE TABLE transactions (
 
     status transaction_status NOT NULL,
 
+    idempotency_key UUID NOT NULL UNIQUE,
+
     created_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP
 );
+
+-- migration :-
+
+-- ALTER TABLE transactions
+-- ADD COLUMN idempotency_key UUID;
+
+-- UPDATE transactions
+-- SET idempotency_key = gen_random_uuid()
+-- WHERE idempotency_key IS NULL;
+
+-- ALTER TABLE transactions
+-- ALTER COLUMN idempotency_key SET NOT NULL;
+
+-- ALTER TABLE transactions
+-- ADD CONSTRAINT transactions_idempotency_key_unique
+-- UNIQUE (idempotency_key);

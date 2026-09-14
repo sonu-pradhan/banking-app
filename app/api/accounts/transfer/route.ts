@@ -24,9 +24,10 @@ export async function POST(request: NextRequest) {
             recipient,
             amount,
             pin,
+            idempotencyKey,
         } = body;
 
-        if (!senderAccountId || !recipient || !amount || !pin) {
+        if (!senderAccountId || !recipient || !amount || !pin || !idempotencyKey) {
             return NextResponse.json(
                 { message: "All fields are required" },
                 { status: 400 }
@@ -197,24 +198,38 @@ export async function POST(request: NextRequest) {
             [transferAmount, receiver.id]
         );
 
-        const transactionResult = await client.query(
-            `
+        try {
+            const transactionResult = await client.query(
+                `
               INSERT INTO transactions (
                 sender_account_id,
                 receiver_account_id,
                 amount,
-                status
+                status,
+                idempotency_key
               )
-              VALUES ($1, $2, $3, $4)
+              VALUES ($1, $2, $3, $4, $5)
             `,
-            [
-                sender.id,
-                receiver.id,
-                transferAmount,
-                "success",
-            ]
-        );
-        console.log(transactionResult)
+                [
+                    sender.id,
+                    receiver.id,
+                    transferAmount,
+                    "success",
+                    idempotencyKey
+                ]
+            );
+        } catch (error: any) {
+            if (error.code === "23505") {
+                await client.query("ROLLBACK");
+
+                return NextResponse.json(
+                    { message: "This transfer has already been processed" },
+                    { status: 409 }
+                );
+            }
+
+            throw error;
+        }
 
         await client.query("COMMIT");
 
