@@ -3,8 +3,8 @@ declare type Account = {
   accountNumber: number;
   balance: number;
   bankName: string;
-  isPrimary?: boolean
-}  
+  isPrimary?: boolean;
+}
 
 declare type User = {
   id: string;
@@ -29,8 +29,11 @@ declare type Bank = {
 declare type Transaction = {
   id: string;
   amount: number;
-  pending: boolean;
-  category: string;
-  senderBankId: string;
-  receiverBankId: string;
+  status: "success" | "failed";
+  createdAt: string;
+  type: "credit" | "debit";
+  person: {
+    name: string;
+    email: string;
+  };
 };
