@@ -17,7 +17,7 @@ const OtherAccounts = ({
   balance,
 }: OtherAccountProps) => {
   return (
-    <div className="grid items-center gap-5 rounded-2xl border border-gray-200 bg-white p-5 shadow-sm transition hover:shadow-md sm:p-6 lg:grid-cols-[1fr_180px_1.4fr]">
+    <div className="grid items-center gap-5 rounded-2xl border border-gray-200 bg-white p-5 shadow-sm transition hover:shadow-md sm:p-6 lg:grid-cols-[1fr_180px_1fr]">
       <div className="flex items-center gap-4">
         <div className="flex size-12 shrink-0 items-center justify-center rounded-full bg-blue-50">
           <span className="text-lg font-bold text-blue-600">
@@ -48,18 +48,6 @@ const OtherAccounts = ({
           <SetPrimaryButton />
         </form>
 
-        <Button variant="ghost" className="gap-2 cursor-pointer hover:text-blue-700">
-          See all transactions
-          <ArrowRight className="size-4" />
-        </Button>
-        <Button
-          type="button"
-          variant="ghost"
-          className="gap-2 text-red-600 hover:bg-red-200 hover:text-red-700 cursor-pointer"
-        >
-          <Trash2 className="size-4" />
-          Remove
-        </Button>
       </div>
     </div>
   );

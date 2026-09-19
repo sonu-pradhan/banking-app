@@ -137,3 +137,62 @@ export async function getTransactions(
     currentPage: page,
   };
 }
+
+
+
+export async function getFinancialActivity(userId: number) {
+  const result = await pool.query(
+    `
+      SELECT
+        TO_CHAR(DATE(t.created_at), 'DD Mon') AS date,
+
+        COALESCE(
+          SUM(
+            CASE
+              WHEN receiver_user.id = $1
+              THEN t.amount
+              ELSE 0
+            END
+          ),
+          0
+        ) AS credit,
+
+        COALESCE(
+          SUM(
+            CASE
+              WHEN sender_user.id = $1
+              THEN t.amount
+              ELSE 0
+            END
+          ),
+          0
+        ) AS debit
+
+      FROM transactions t
+
+      JOIN accounts sender
+        ON sender.id = t.sender_account_id
+
+      JOIN accounts receiver
+        ON receiver.id = t.receiver_account_id
+
+      JOIN users sender_user
+        ON sender_user.id = sender.user_id
+
+      JOIN users receiver_user
+        ON receiver_user.id = receiver.user_id
+
+      WHERE
+        (sender_user.id = $1 OR receiver_user.id = $1)
+        AND t.status = 'success'
+        AND t.created_at >= CURRENT_DATE - INTERVAL '6 days'
+
+      GROUP BY DATE(t.created_at)
+
+      ORDER BY DATE(t.created_at)
+    `,
+    [userId]
+  );
+
+  return result.rows;
+}

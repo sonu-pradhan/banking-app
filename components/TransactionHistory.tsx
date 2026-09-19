@@ -99,7 +99,7 @@ const TransactionHistory = () => {
               id="account"
               value={accountId}
               onChange={handleAccountChange}
-              className="h-11 w-full cursor-pointer appearance-none rounded-xl border bg-background pl-10 pr-4 text-sm outline-none transition focus:border-blue-500"
+              className="h-11 w-full cursor-pointer rounded-xl border bg-background pl-10 pr-4 text-sm outline-none transition focus:border-blue-500"
             >
               <option value="">All accounts</option>
 

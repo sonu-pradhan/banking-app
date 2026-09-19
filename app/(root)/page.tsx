@@ -1,6 +1,8 @@
 import BalanceBox from "@/components/BalanceBox"
+import FinancialActivity from "@/components/FinancialActivity"
 import HeaderBox from "@/components/HeaderBox"
 import RightSidebar from "@/components/RightSidebar"
+import { getFinancialActivity } from "@/lib/transaction.action"
 import { getCurrentUser } from "@/lib/user.action"
 
 const HomePage = async () => {
@@ -10,6 +12,10 @@ const HomePage = async () => {
   const totalBalance = loggedIn?.accounts.reduce((total:number, account:Account) => {
     return total + account.balance;
   }, 0);
+
+  const financialActivity = loggedIn
+    ? await getFinancialActivity(loggedIn.id)
+    : [];
 
   return (
     <section className="flex min-h-screen w-full">
@@ -28,6 +34,9 @@ const HomePage = async () => {
             currentBalance={totalBalance}
           />
         </header>
+
+        <FinancialActivity data={financialActivity} />
+
       </div>
 
       <RightSidebar
