@@ -23,7 +23,7 @@ export async function POST(request:Request) {
         if (existingUser.rows.length > 0 ) {
             return NextResponse.json(
                 { message : "User already exists" },
-                { status: 404 }
+                { status: 409 }
             );
         }
 
