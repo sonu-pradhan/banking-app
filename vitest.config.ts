@@ -11,5 +11,6 @@ export default defineConfig({
 
   test: {
     environment: "node",
+    setupFiles: ["./tests/react-testing-library/setup.ts"],
   },
 });
