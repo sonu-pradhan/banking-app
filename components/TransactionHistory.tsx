@@ -208,12 +208,12 @@ function TransactionItem({
   });
 
   return (
-    <div className="group relative mx-3 my-2 grid grid-cols-[1fr_auto_1fr] items-center gap-6 rounded-2xl border border-transparent px-4 py-4 transition-all duration-200 hover:border-border hover:bg-linear-to-r hover:from-background hover:via-muted/50 hover:to-background hover:shadow-sm">
+    <div className="group relative mx-2 my-2 grid grid-cols-[40px_minmax(0,1fr)_30%] items-center rounded-2xl border border-transparent px-2 py-4 transition-all duration-200 hover:border-border hover:bg-linear-to-r hover:from-background hover:via-muted/50 hover:to-background hover:shadow-sm sm:mx-3 sm:grid-cols-[1fr_auto_1fr] sm:gap-6 sm:px-4">
       
-      <div className="flex min-w-0 items-center gap-4">
+      <div className="contents sm:flex sm:min-w-0 sm:items-center sm:gap-4">
         <div
           className={cn(
-            "relative flex h-11 w-11 shrink-0 items-center justify-center rounded-full transition-transform duration-200 group-hover:scale-105",
+            "relative flex h-10 w-10 shrink-0 items-center justify-center rounded-full sm:mx-0 sm:h-11 sm:w-11 transition-transform duration-200 group-hover:scale-105",
             isDebit
               ? "bg-orange-100 text-orange-600 shadow-[0_0_0_5px_rgba(249,115,22,0.08)]"
               : "bg-emerald-100 text-emerald-600 shadow-[0_0_0_5px_rgba(16,185,129,0.08)]"
@@ -226,7 +226,7 @@ function TransactionItem({
           )}
         </div>
 
-        <div className="min-w-0">
+        <div className="min-w-0 pr-2 max-sm:col-start-2">
           <div className="flex items-center gap-2">
             <p className="truncate font-semibold text-foreground">
               {transaction.person.name}
@@ -250,7 +250,7 @@ function TransactionItem({
         </div>
       </div>
 
-      <div className="text-center">
+      <div className="text-right max-sm:col-start-3 max-sm:row-start-1">
         <p
           className={cn(
             "whitespace-nowrap text-base font-bold tracking-tight",
@@ -278,8 +278,8 @@ function TransactionItem({
         )}
       </div>
 
-      <div className="text-right">
-        <p className="text-xs font-medium text-muted-foreground">
+      <div className="min-w-0 text-right max-sm:col-start-3 max-sm:row-start-2">
+        <p className="text-[10px] font-medium leading-tight sm:text-xs text-muted-foreground">
           {formattedDate}
         </p>
       </div>
